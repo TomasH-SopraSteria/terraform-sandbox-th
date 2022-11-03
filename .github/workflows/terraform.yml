@@ -84,7 +84,7 @@ jobs:
 
   terraform_apply:
     name: 'terraform apply'
-    needs: [terraform_plan]
+    needs: terraform_plan
     runs-on: ubuntu-latest
 
     defaults:
