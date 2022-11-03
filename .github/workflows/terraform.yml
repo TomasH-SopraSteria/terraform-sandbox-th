@@ -67,21 +67,21 @@ jobs:
         shell: bash
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    - name: Terraform Init
-      run: terraform init
-      working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{env.ROOT_PATH}}
 
-    - name: Terraform Plan
-      run: terraform plan
-      working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ${{env.ROOT_PATH}}
 
 
   terraform_apply:
@@ -94,18 +94,18 @@ jobs:
         shell: bash
     
     steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-        - name: Setup Terraform
-          uses: hashicorp/setup-terraform@v1
-          with:
-            cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-        - name: Terraform Init
-          run: terraform init
-          working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{env.ROOT_PATH}}
 
-        - name: Terraform Apply
-          run: terraform apply
-          working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Apply
+        run: terraform apply
+        working-directory: ${{env.ROOT_PATH}}
