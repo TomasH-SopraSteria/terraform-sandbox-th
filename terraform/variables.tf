@@ -1,6 +1,6 @@
 variable "rg_name" {
     type = string
-    default = "th_sandbox"
+    default = "th_sandbox_lab"
 }
 
 variable "location" {
