@@ -105,5 +105,5 @@ jobs:
           working-directory: ${{env.ROOT_PATH}}
 
         - name: Terraform Apply
-          run: terraform apply --auto-approve
+          run: terraform apply
           working-directory: ${{env.ROOT_PATH}}
