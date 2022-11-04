@@ -1,3 +1,4 @@
+data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "keyvaultsandbox" {
   name                        = var.keyvault_name
@@ -20,14 +21,13 @@ resource "azurerm_key_vault" "keyvaultsandbox" {
 
     secret_permissions = [
       "Get",
+      "List",
+      "Set",
+      "Delete"
     ]
 
     storage_permissions = [
       "Get",
     ]
   }
-}
-
-resource "azurerm_key_vault_secret" "sa-secret" {
-    
 }
