@@ -19,6 +19,8 @@ env:
   ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
   ROOT_PATH: 'terraform'
 
+###
+
 jobs:
 
   terraform_plan:
