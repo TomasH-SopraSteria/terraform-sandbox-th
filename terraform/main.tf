@@ -3,7 +3,7 @@ terraform {
     resource_group_name  = "terraformdevops"
     storage_account_name = "tfstorageaccthsandbox"
     container_name       = "terraformstatefile"
-    key                  = "dev.terraform.tfstate"
+    key                  = "terraform.tfstate"
   }
 }
 
