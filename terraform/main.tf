@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
 # }
 
 module "datafactory" {
-  source = "/modules/datafactory"
+  source = "./modules/datafactory"
   name = "df_sandbox"
   location = "${var.location}"
   resource_group_name = "${module.resource_group.name}"
