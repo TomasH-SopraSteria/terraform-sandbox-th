@@ -24,5 +24,5 @@ module "datafactory" {
   source = "./modules/datafactory"
   name = "df_sandbox"
   location = "${var.location}"
-  resource_group_name = "${module.resource_group.name}"
+  resource_group_name = "${var.rg_name}"
 }
