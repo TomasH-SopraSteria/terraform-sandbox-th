@@ -20,9 +20,9 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
   
 # }
 
-module "setup_datafactory" {
-  source = "./modules/datafactory"
+module "datafactory" {
+  source = "/modules/datafactory"
   name = "df_sandbox"
-  location = var.location
-  resouresource_group = var.rg_name
+  location = "${var.location}"
+  resource_group_name = "${module.resource_group.name}"
 }
