@@ -12,3 +12,17 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
     location = var.location
 }
 
+# module "setup_keyvault" {
+#   source = "./modules/keyvault"
+#   kv_name = "kv_sandbox"
+#   kv_location = var.location
+#   kv_resource_group = var.rg_name
+  
+# }
+
+module "setup_datafactory" {
+  source = "./modules/datafactory"
+  df_name = "df_sandbox"
+  df_location = var.location
+  df_resource_group = var.rg_name
+}
