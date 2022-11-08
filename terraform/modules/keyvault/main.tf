@@ -14,18 +14,18 @@ resource "azurerm_key_vault" "keyvaultsandbox" {
     object_id = var.kv_object_id
 
     key_permissions = [
-      "Get",
+      "get",
     ]
 
     secret_permissions = [
-      "Get",
-      "List",
-      "Set",
-      "Delete"
+      "get",
+      "list",
+      "set",
+      "delete"
     ]
 
     storage_permissions = [
-      "Get",
+      "get",
     ]
   }
 }
