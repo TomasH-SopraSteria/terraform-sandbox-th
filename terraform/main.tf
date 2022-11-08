@@ -51,6 +51,7 @@ module "keyvault" {
 
 module "datafactorylinkedservices" {
   source = "./modules/datafactorylinkedservices"
+  dfl_resource_group_name = "${var.rg_name}"
   dfl_keyvaultid = module.keyvault.id
   dfl_datafactoryid = module.datafactory.id
 }
