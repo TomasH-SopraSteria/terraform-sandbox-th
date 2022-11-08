@@ -29,7 +29,7 @@ module "datafactory" {
 module "storageaccount" {
   source = "./modules/storageaccount"
   #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
-  sa_name = "sasandboxth1"
+  sa_name = "sasandboxth2"
   sa_location = "${var.location}"
   sa_resource_group_name = "${var.rg_name}"
   sa_account_tier = "Standard"
