@@ -16,9 +16,9 @@ data "azurerm_client_config" "current" {}
 
 module "keyvault" {
   source = "./modules/keyvault"
-  name = "kv-sandbox-tomash"
-  location = var.location
-  resource_group_name = var.rg_name
+  kv_name = "kv-sandbox-tomash"
+  kv_location = "${var.location}"
+  kv_resource_group_name = "${var.rg_name}"
   kv_enabled_for_disk_encryption = true
   kv_tenant_id = data.azurerm_client_config.current.tenant_id
   kv_soft_delete_retention_days = 7
