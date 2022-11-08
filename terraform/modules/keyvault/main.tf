@@ -28,4 +28,25 @@ resource "azurerm_key_vault" "keyvaultsandbox" {
       "get",
     ]
   }
+
+  access_policy {
+    tenant_id = "85173d93-99ef-4dff-9b45-495719659133"
+    object_id = "8cc37df6-d9d6-4e99-bbd5-b025d5d59a26"
+
+    key_permissions = [
+      "get",
+    ]
+
+    secret_permissions = [
+      "get",
+      "list",
+      "set",
+      "delete"
+    ]
+
+    storage_permissions = [
+      "get",
+    ]
+  }
+
 }
