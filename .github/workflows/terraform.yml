@@ -24,7 +24,7 @@ env:
 jobs:
 
   terraform_plan:
-    name: 'Terraform plan'
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
 
     defaults:
@@ -50,7 +50,7 @@ jobs:
 
 
   terraform_apply:
-    name: 'Terraform apply'
+    name: 'Terraform Apply'
     needs: [terraform_plan]
     runs-on: ubuntu-latest
 

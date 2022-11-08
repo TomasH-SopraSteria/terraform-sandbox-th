@@ -48,6 +48,24 @@ resource "azurerm_key_vault" "keyvaultsandbox" {
       "get",
     ]
   }
+
+  access_policy {
+    tenant_id = var.kv_tenant_id
+    object_id = var.kv_adfaccess
+
+    key_permissions = [
+      "get", 
+      "list", 
+      "update", 
+      "delete"
+    ]
+
+    secret_permissions = [
+      "get",
+      "list"
+    ]
+  }
+
 }
 
 resource "azurerm_key_vault_secret" "secretsa" {
@@ -56,17 +74,19 @@ resource "azurerm_key_vault_secret" "secretsa" {
   key_vault_id = azurerm_key_vault.keyvaultsandbox.id
 }
 
-resource "azurerm_key_vault_access_policy" "adfaccess" {
-  key_vault_id = azurerm_key_vault.keyvaultsandbox.id
-  tenant_id    = var.kv_tenant_id
-  object_id    = var.kv_adfaccess
-  key_permissions = [
-    "get", "list", "update", "delete",
-  ]
-  secret_permissions = [
-     "get", "list"
-  ]
-  lifecycle {
-    prevent_destroy  = true
-  }
-}
+# resource "azurerm_key_vault_access_policy" "adfaccess" {
+#   key_vault_id = azurerm_key_vault.keyvaultsandbox.id
+#   tenant_id    = var.kv_tenant_id
+#   object_id    = var.kv_adfaccess
+
+#   key_permissions = [
+#     "get", "list", "update", "delete",
+#   ]
+#   secret_permissions = [
+#      "get", "list"
+#   ]
+#   lifecycle {
+#     prevent_destroy  = true
+#   }
+
+# }
