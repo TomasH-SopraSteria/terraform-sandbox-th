@@ -48,3 +48,9 @@ module "keyvault" {
   kv_secret_sa_value = module.storageaccount.secret
   kv_adfaccess = module.datafactory.principalid
 }
+
+module "datafactorylinkedservices" {
+  source = "./modules/datafactorylinkedservices"
+  dfl_keyvaultid = module.keyvault.id
+  dfl_datafactoryid = module.datafactory.id
+}
