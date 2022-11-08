@@ -10,11 +10,6 @@ variable "kv_resource_group_name" {
     type = string
 }
 
-
-variable "test" {
-    type = string
-}
-
 variable "kv_enabled_for_disk_encryption" {
     type = string
 }

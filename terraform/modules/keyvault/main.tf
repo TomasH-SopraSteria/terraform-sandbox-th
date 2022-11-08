@@ -1,5 +1,5 @@
 resource "azurerm_key_vault" "keyvaultsandbox" {
-  name                        = var.keyvault_name
+  name                        = var.kv_name
   location                    = var.kv_location
   resource_group_name         = var.kv_resource_group
   enabled_for_disk_encryption = var.kv_enabled_for_disk_encryption
