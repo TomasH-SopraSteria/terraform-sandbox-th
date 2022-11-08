@@ -1,16 +1,13 @@
-variable resource_group_name {
-    default = ""
+variable df_resource_group_name {
     type = string
     description = "Resource group name"
 }
 
-variable name {
-    default = ""
+variable df_name {
     type = string
     description = "DF name"
 }
 
-variable location {
-    default = ""
+variable df_location {
     type = string
 }
