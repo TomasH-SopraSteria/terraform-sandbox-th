@@ -23,6 +23,4 @@ variable "sa_account_kind" {
     type = string
 }
 
-variable "sa_is_hns_enabled" {
-    type = string
-}
+variable "sa_is_hns_enabled" {}
