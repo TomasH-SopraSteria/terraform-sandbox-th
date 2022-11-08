@@ -55,3 +55,18 @@ resource "azurerm_key_vault_secret" "secretsa" {
   value        = var.kv_secret_sa_value
   key_vault_id = azurerm_key_vault.keyvaultsandbox.id
 }
+
+resource "azurerm_key_vault_access_policy" "adfaccess" {
+  key_vault_id = azurerm_key_vault.keyvaultsandbox.id
+  tenant_id    = var.kv_tenant_id
+  object_id    = azurerm_data_factory.datafactory.identity.0.principal_id
+  key_permissions = [
+    "get", "list", "update", "delete",
+  ]
+  secret_permissions = [
+     "get", "list"
+  ]
+  lifecycle {
+    prevent_destroy  = true
+  }
+}
