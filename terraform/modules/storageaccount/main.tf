@@ -19,5 +19,21 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
     properties = {
     hello = "aGVsbG8="
   }
+
+  ace {
+    scope       = "access"
+    type        = "user"
+    id          = azuread_service_principal.adls_connect.id
+    permissions = "rwx"
+  }
+
+  # Set ACL for the Service Principal "ADLS Load"
+  ace {
+    scope       = "access"
+    type        = "user"
+    id          = azuread_service_principal.adls_load.id
+    permissions = "rwx"
+  }
+
 }
 
