@@ -22,12 +22,12 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
     hello = "aGVsbG8="
   }
 
-  ace {
+# Access Permission ACL for Container/Root Directory
+    ace {
+    # no id => owning user (i.e. deployment account)
+    permissions = "rwx"
     scope       = "access"
     type        = "user"
-    id          = data.azurerm_client_config.current.tenant_id
-    permissions = "rwx"
   }
-
 }
 
