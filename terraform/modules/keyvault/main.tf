@@ -1,7 +1,7 @@
 resource "azurerm_key_vault" "keyvaultsandbox" {
   name                        = var.kv_name
   location                    = var.kv_location
-  resource_group_name         = var.kv_resource_group
+  resource_group_name         = var.kv_resource_group_name
   enabled_for_disk_encryption = var.kv_enabled_for_disk_encryption
   tenant_id                   = var.kv_tenant_id
   soft_delete_retention_days  = var.kv_soft_delete_retention_days
