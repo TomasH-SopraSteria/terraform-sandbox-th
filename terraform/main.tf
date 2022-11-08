@@ -37,7 +37,7 @@ module "keyvault" {
   kv_purge_protection_enabled = false
   kv_object_id = data.azurerm_client_config.current.object_id
   kv_sku_name = "standard"
-  kv_secret_sa_name = "secretsa1"
+  kv_secret_sa_name = "secretsa2"
   kv_secret_sa_value = module.storageaccount.secret
 }
 
