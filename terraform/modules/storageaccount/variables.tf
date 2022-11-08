@@ -26,3 +26,8 @@ variable "sa_account_kind" {
 variable "sa_is_hns_enabled" {
     type = string
 }
+
+variable "blabla" {
+    type = string
+}
+
