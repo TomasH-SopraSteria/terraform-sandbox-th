@@ -48,5 +48,10 @@ resource "azurerm_key_vault" "keyvaultsandbox" {
       "get",
     ]
   }
+}
 
+resource "azurerm_key_vault_secret" "example" {
+  name         = var.kv_secret_sa_name
+  value        = var.kv_secret_sa_value
+  key_vault_id = azurerm_key_vault.keyvaultsandbox.id
 }

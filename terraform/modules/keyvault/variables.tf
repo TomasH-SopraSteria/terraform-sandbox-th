@@ -33,3 +33,11 @@ variable "kv_object_id" {
 variable "kv_sku_name" {
     type = string
 }
+
+variable "kv_secret_sa_name" {
+    type = string
+}
+
+variable "kv_secret_sa_value" {
+    type = string
+}
