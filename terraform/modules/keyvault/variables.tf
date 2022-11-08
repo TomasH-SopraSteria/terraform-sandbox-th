@@ -42,6 +42,4 @@ variable "kv_secret_sa_value" {
     type = string
 }
 
-variable "kv_adfaccess" {
-    type = list
-}
+variable "kv_adfaccess" {}
