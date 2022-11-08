@@ -1,9 +1,11 @@
-variable "keyvault_name" {
+variable "kv_resource_group" {
     type = string
-    default = "kv-sandbox"
 }
 
-variable "keyvault_blabla" {
+variable "kv_name" {
     type = string
-    default = "kv-blbla"
+}
+
+variable "kv_location" {
+    type = string
 }

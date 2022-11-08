@@ -12,17 +12,16 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
     location = var.location
 }
 
-# module "setup_keyvault" {
+# module "keyvault" {
 #   source = "./modules/keyvault"
-#   kv_name = "kv_sandbox"
-#   kv_location = var.location
-#   kv_resource_group = var.rg_name
-  
+#   name = "kv-sandbox"
+#   location = var.location
+#   resource_group_name = var.rg_name
 # }
 
 module "datafactory" {
   source = "./modules/datafactory"
-  name = "df-sandbox-tomash"
-  location = "${var.location}"
-  resource_group_name = "${var.rg_name}"
+  df_name = "df-sandbox-tomash"
+  df_location = "${var.location}"
+  df_resource_group_name = "${var.rg_name}"
 }
