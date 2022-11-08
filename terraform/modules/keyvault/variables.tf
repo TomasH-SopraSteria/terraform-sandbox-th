@@ -9,3 +9,8 @@ variable "kv_location" {
 variable "´kv_resource_group_name" {
     type = string
 }
+
+
+variable "test" {
+    type = string
+}
