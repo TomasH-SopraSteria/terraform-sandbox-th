@@ -25,3 +25,11 @@ module "datafactory" {
   df_location = "${var.location}"
   df_resource_group_name = "${var.rg_name}"
 }
+
+module "storageaccount" {
+  source = "./modules/storageaccount"
+  #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
+  sa_name = "storageAccountSandboxTomash"
+  sa_location = "${var.location}"
+  sa_resource_group_name = "${var.rg_name}"
+}
