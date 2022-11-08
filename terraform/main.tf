@@ -12,12 +12,20 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
     location = var.location
 }
 
-# module "keyvault" {
-#   source = "./modules/keyvault"
-#   name = "kv-sandbox"
-#   location = var.location
-#   resource_group_name = var.rg_name
-# }
+data "azurerm_client_config" "current" {}
+
+module "keyvault" {
+  source = "./modules/keyvault"
+  name = "kv-sandbox-tomash"
+  location = var.location
+  resource_group_name = var.rg_name
+  kv_enabled_for_disk_encryption = true
+  kv_tenant_id = data.azurerm_client_config.current.tenant_id
+  kv_soft_delete_retention_days = 7
+  kv_purge_protection_enabled = false
+  kv_object_id = data.azurerm_client_config.current.object_id
+  kv_sku_name = "Standard"
+}
 
 module "datafactory" {
   source = "./modules/datafactory"
@@ -34,4 +42,6 @@ module "storageaccount" {
   sa_resource_group_name = "${var.rg_name}"
   sa_account_tier = "Standard"
   sa_account_replication_type = "GRS"
+  sa_account_kind = "StorageV2"
+  sa_is_hns_enabled = "true"
 }

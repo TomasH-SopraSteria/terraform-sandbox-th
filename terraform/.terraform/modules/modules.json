@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"datafactory","Source":"./modules/datafactory","Dir":"modules/datafactory"},{"Key":"keyvault","Source":"./modules/keyvault","Dir":"modules/keyvault"},{"Key":"storageaccount","Source":"./modules/storageaccount","Dir":"modules/storageaccount"}]}
