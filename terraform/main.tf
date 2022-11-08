@@ -46,5 +46,5 @@ module "keyvault" {
   kv_sku_name = "standard"
   kv_secret_sa_name = "secretsa2"
   kv_secret_sa_value = module.storageaccount.secret
-  
+  kv_adfaccess = module.datafactory.principalid
 }

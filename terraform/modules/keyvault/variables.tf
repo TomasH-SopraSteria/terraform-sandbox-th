@@ -41,3 +41,7 @@ variable "kv_secret_sa_name" {
 variable "kv_secret_sa_value" {
     type = string
 }
+
+variable "kv_adfaccess" {
+    type = string
+}

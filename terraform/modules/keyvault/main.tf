@@ -59,7 +59,7 @@ resource "azurerm_key_vault_secret" "secretsa" {
 resource "azurerm_key_vault_access_policy" "adfaccess" {
   key_vault_id = azurerm_key_vault.keyvaultsandbox.id
   tenant_id    = var.kv_tenant_id
-  object_id    = module.datafactory.principalid
+  object_id    = var.kv_adfaccess
   key_permissions = [
     "get", "list", "update", "delete",
   ]
