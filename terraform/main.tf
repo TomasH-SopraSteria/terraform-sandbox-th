@@ -32,4 +32,6 @@ module "storageaccount" {
   sa_name = "storageAccountSandboxTomash"
   sa_location = "${var.location}"
   sa_resource_group_name = "${var.rg_name}"
+  sa_account_tier = "Standard"
+  sa_account_replication_type = "GRS"
 }
