@@ -26,6 +26,13 @@ module "storageaccount" {
   sa_is_hns_enabled = "true"
 }
 
+module "datafactory" {
+  source = "./modules/datafactory"
+  df_name = "df-sandbox-tomash"
+  df_location = "${var.location}"
+  df_resource_group_name = "${var.rg_name}"
+}
+
 module "keyvault" {
   source = "./modules/keyvault"
   kv_name = "kv-sandbox-tomash"
@@ -39,11 +46,5 @@ module "keyvault" {
   kv_sku_name = "standard"
   kv_secret_sa_name = "secretsa2"
   kv_secret_sa_value = module.storageaccount.secret
-}
-
-module "datafactory" {
-  source = "./modules/datafactory"
-  df_name = "df-sandbox-tomash"
-  df_location = "${var.location}"
-  df_resource_group_name = "${var.rg_name}"
+  
 }
