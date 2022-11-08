@@ -27,7 +27,3 @@ variable "sa_is_hns_enabled" {
     type = string
 }
 
-variable "blabla" {
-    type = string
-}
-
