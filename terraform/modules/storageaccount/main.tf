@@ -12,6 +12,6 @@ resource "azurerm_storage_account" "storageaccount" {
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
   name               = "datalake-sandbox-th"
-  storage_account_id = azurerm_storage_account.example.id
+  storage_account_id = azurerm_storage_account.storageaccount.id
 }
 
