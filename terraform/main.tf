@@ -26,12 +26,12 @@ module "storageaccount" {
   sa_is_hns_enabled = "true"
 }
 
-# module "datalake" {
-#   source = "./modules/sadatalake"
-#   dl_name = "datalake-sandbox-1"
-#   dl_storageacc = module.storageaccount.sa_id
-#   dl_properties = "aGVsbG8="
-# }
+module "datalake" {
+  source = "./modules/storageaccount/sadatalake"
+  dl_name = "datalake-sandbox-1"
+  dl_storageacc = module.storageaccount.sa_id
+  dl_properties = "aGVsbG8="
+}
 
 module "datafactory" {
   source = "./modules/datafactory"
@@ -57,7 +57,7 @@ module "keyvault" {
 }
 
 module "datafactorylinkedservices" {
-  source = "./modules/datafactorylinkedservices"
+  source = "./modules/datafactory/datafactorylinkedservices"
   dfl_resource_group_name = "${var.rg_name}"
   dfl_datafactory_name = module.datafactory.df_name
   dfl_keyvaultid = module.keyvault.kv_id
