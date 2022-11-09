@@ -1,6 +1,6 @@
 resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
   name               = var.dl_name
-  storage_account_id = var.dl_storageacc
+  storage_account_id = var.dl_storageaccid
 
     properties = {
     hello = var.dl_properties
