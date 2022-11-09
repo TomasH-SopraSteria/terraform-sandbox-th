@@ -27,9 +27,9 @@ module "storageaccount1" {
 }
 
 module "datalake1" {
-  source = "./modules/storageaccount/datalake"
+  source = "./modules/datalake"
   sadl_name = "datalake-sandbox-th5"
-  sadl_storageaccid = module.storageaccount1.id
+  sadl_storageaccid = module.storageaccount1.sa_id
   sadl_properties = "aGVsbG8="
 }
 
@@ -64,14 +64,14 @@ module "keyvault" {
   kv_object_id = data.azurerm_client_config.current.object_id
   kv_sku_name = "standard"
   kv_secret_sa_name = "secretsa3"
-  kv_secret_sa_value = module.storageaccount1.secret
-  kv_adfaccess = module.datafactory.principalid
+  kv_secret_sa_value = module.storageaccount1.sa_secret
+  kv_adfaccess = module.datafactory.df_principalid
 }
 
 module "datafactorylinkedservices" {
-  source = "./modules/datafactory/datafactorylinkedservices"
+  source = "./modules/datafactorylinkedservices"
   dfl_resource_group_name = "${var.rg_name}"
-  dfl_datafactory_name = module.datafactory.name
-  dfl_keyvaultid = module.keyvault.id
-  dfl_datafactoryid = module.datafactory.id
+  dfl_datafactory_name = module.datafactory.df_name
+  dfl_keyvaultid = module.keyvault.kv_id
+  dfl_datafactoryid = module.datafactory.df_id
 }
