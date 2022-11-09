@@ -2,14 +2,14 @@
 name: 'terraform deployment to azure sandbox'
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - unlocked
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   types:
+  #     - opened
+  #     - reopened
+  #     - synchronize
+  #     - unlocked
   workflow_dispatch: 
 
 

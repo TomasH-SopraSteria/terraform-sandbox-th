@@ -1,5 +1,5 @@
 resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
-  name               = sadl_name
+  name               = sadl_name2
   storage_account_id = sadl_storageaccid
 
     properties = {
