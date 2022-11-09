@@ -24,6 +24,8 @@ env:
 jobs:
 
   terraform_validate:
+    name: 'Terraform Validate'
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout
