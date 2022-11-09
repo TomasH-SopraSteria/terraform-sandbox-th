@@ -23,6 +23,26 @@ env:
 
 jobs:
 
+  terraform_validate:
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+    
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{env.ROOT_PATH}}
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+
   terraform_plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
@@ -40,9 +60,9 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ${{env.ROOT_PATH}}
+      # - name: Terraform Init
+      #   run: terraform init
+      #   working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Plan
         run: terraform plan -lock=false
@@ -67,9 +87,9 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ${{env.ROOT_PATH}}
+      # - name: Terraform Init
+      #   run: terraform init
+      #   working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -lock=false
