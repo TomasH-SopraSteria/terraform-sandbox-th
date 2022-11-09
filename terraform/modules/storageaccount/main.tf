@@ -11,3 +11,20 @@ resource "azurerm_storage_account" "storageaccount" {
     environment = "staging"
   }
 }
+
+resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
+  name               = "datalake-sandbox-1"
+  storage_account_id = azurerm_storage_account.storageaccount.id
+
+    properties = {
+    hello = "aGVsbG8="
+  }
+
+# Access Permission ACL for Container/Root Directory
+    ace {
+    # no id => owning user (i.e. deployment account)
+    permissions = "rwx"
+    scope       = "access"
+    type        = "user"
+  }
+}

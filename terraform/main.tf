@@ -26,12 +26,12 @@ module "storageaccount" {
   sa_is_hns_enabled = "true"
 }
 
-module "datalake" {
-  source = "./modules/sadatalake"
-  dl_name = "datalake-sandbox-1"
-  dl_storageacc = module.storageaccount.sa_id
-  dl_properties = "aGVsbG8="
-}
+# module "datalake" {
+#   source = "./modules/sadatalake"
+#   dl_name = "datalake-sandbox-1"
+#   dl_storageacc = module.storageaccount.sa_id
+#   dl_properties = "aGVsbG8="
+# }
 
 module "datafactory" {
   source = "./modules/datafactory"
