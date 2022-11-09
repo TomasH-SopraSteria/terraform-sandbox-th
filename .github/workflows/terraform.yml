@@ -72,8 +72,8 @@ jobs:
         run: terraform plan -lock=false
         working-directory: ${{env.ROOT_PATH}}
 
-      terraform_outpuf:
-    - name: Plan output
+  terraform_outpuf:
+    - name: [Terraform Output]
         id: output
         uses: actions/github-script@v3
         if: github.event_name == 'pull_request'
