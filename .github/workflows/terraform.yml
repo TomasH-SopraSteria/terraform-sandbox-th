@@ -2,9 +2,14 @@
 name: 'terraform deployment to azure sandbox'
 
 on:
-  push:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
   pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - unlocked
   workflow_dispatch: 
 
 
@@ -72,39 +77,39 @@ jobs:
         run: terraform plan -lock=false
         working-directory: ${{env.ROOT_PATH}}
 
-  terraform_outpuf:
-    - name: [Terraform Output]
-        id: output
-        uses: actions/github-script@v3
-        if: github.event_name == 'pull_request'
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            ### Workspace
-            \`${process.env.TF_WORKSPACE}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-            <details><summary>Show Plan</summary>
-            \`\`\`hcl
-            ${process.env.PLAN}
-            \`\`\`
-            </details>
-            **Pusher**: @${{ github.actor }}
-            **Action**: ${{ github.event_name }}
-            `;
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
+  # terraform_outpuf:
+  #   - name: [Terraform Output]
+  #       id: output
+  #       uses: actions/github-script@v3
+  #       if: github.event_name == 'pull_request'
+  #       env:
+  #         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         script: |
+  #           const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+  #           ### Workspace
+  #           \`${process.env.TF_WORKSPACE}\`
+  #           #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+  #           #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+  #           <details><summary>Show Plan</summary>
+  #           \`\`\`hcl
+  #           ${process.env.PLAN}
+  #           \`\`\`
+  #           </details>
+  #           **Pusher**: @${{ github.actor }}
+  #           **Action**: ${{ github.event_name }}
+  #           `;
+  #           github.issues.createComment({
+  #             issue_number: context.issue.number,
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             body: output
+  #           })
 
   terraform_apply:
     name: 'Terraform Apply'
-    needs: [terraform_output]
+    needs: [terraform_plan]
     runs-on: ubuntu-latest
 
     defaults:
