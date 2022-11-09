@@ -29,8 +29,8 @@ module "storageaccount" {
 module "datalake" {
   source = "./modules/sadatalake"
   dl_name = "datalake-sandbox-1"
-  dl_dl_storageacc = module.storageaccount.sa_id
-  dl_dl_properties = "aGVsbG8="
+  dl_storageacc = module.storageaccount.sa_id
+  dl_properties = "aGVsbG8="
 }
 
 module "datafactory" {
