@@ -9,7 +9,7 @@ resource "azurerm_data_factory" "datafactorysandbox" {
 
     github_configuration {
       account_name = "TomasH-SopraSteria"
-      branch_name = "adf_publish"
+      branch_name = "main"
       git_url = "https://github.com/TomasH-SopraSteria/terraform-sandbox-df"
       repository_name = "terraform-sandbox-df"
       root_folder = "/"
