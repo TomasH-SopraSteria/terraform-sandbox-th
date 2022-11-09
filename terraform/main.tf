@@ -29,7 +29,7 @@ module "storageaccount1" {
 module "datalake1" {
   source = "./modules/storageaccount/datalake"
   sadl_name = "datalake-sandbox-th"
-  sadl_storageaccid = module.storageaccount.id
+  sadl_storageaccid = module.storageaccount1.id
   sadl_properties = "aGVsbG8="
 }
 
