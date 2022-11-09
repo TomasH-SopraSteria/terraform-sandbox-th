@@ -50,7 +50,7 @@ module "keyvault" {
 }
 
 module "datafactorylinkedservices" {
-  source = "./modules/datafactorylinkedservices"
+  source = "./modules/datafactory/datafactorylinkedservices"
   dfl_resource_group_name = "${var.rg_name}"
   dfl_datafactory_name = module.datafactory.name
   dfl_keyvaultid = module.keyvault.id
