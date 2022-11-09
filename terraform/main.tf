@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
 
 data "azurerm_client_config" "current" {}
 
-module "storageaccount1" {
+module "storageaccount11" {
   source = "./modules/storageaccount"
   #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
   sa_name = "sasandboxth5"
@@ -29,21 +29,21 @@ module "storageaccount1" {
 module "datalake1" {
   source = "./modules/datalake"
   sadl_name = "datalake-sandbox-th5"
-  sadl_storageaccid = module.storageaccount1.sa_id
+  sadl_storageaccid = module.storageaccount11.sa_id
   sadl_properties = "aGVsbG8="
 }
 
-module "storageaccount2" {
-  source = "./modules/storageaccount"
-  #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
-  sa_name = "sasandboxt6"
-  sa_location = "${var.location}"
-  sa_resource_group_name = "${var.rg_name}"
-  sa_account_tier = "Standard"
-  sa_account_replication_type = "GRS"
-  sa_account_kind = "BlobStorage"
-  sa_is_hns_enabled = "false"
-}
+# module "storageaccount2" {
+#   source = "./modules/storageaccount"
+#   #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
+#   sa_name = "sasandboxt6"
+#   sa_location = "${var.location}"
+#   sa_resource_group_name = "${var.rg_name}"
+#   sa_account_tier = "Standard"
+#   sa_account_replication_type = "GRS"
+#   sa_account_kind = "BlobStorage"
+#   sa_is_hns_enabled = "false"
+# }
 
 module "datafactory" {
   source = "./modules/datafactory"
