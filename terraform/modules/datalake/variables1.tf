@@ -1,4 +1,4 @@
-variable "sadl_name2" {
+variable "sadl_name1" {
     type = string
 }
 

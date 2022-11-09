@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "rg_sandbox-th" {
 
 data "azurerm_client_config" "current" {}
 
-module "storageaccount11" {
+module "storageaccount" {
   source = "./modules/storageaccount"
   #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
   sa_name = "sasandboxth5"
@@ -26,23 +26,11 @@ module "storageaccount11" {
   sa_is_hns_enabled = "true"
 }
 
-module "datalake1" {
+module "datalake" {
   source = "./modules/datalake"
-  sadl_name = "datalake-sandbox-th5"
-  sadl_storageaccid = module.storageaccount1.sa_id
-  sadl_properties = "aGVsbG8="
-}
-
-module "storageaccount2" {
-  source = "./modules/storageaccount"
-  #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
-  sa_name = "sasandboxt6"
-  sa_location = "${var.location}"
-  sa_resource_group_name = "${var.rg_name}"
-  sa_account_tier = "Standard"
-  sa_account_replication_type = "GRS"
-  sa_account_kind = "BlobStorage"
-  sa_is_hns_enabled = "false"
+  sadl_name1 = "datalake-sandbox-th5"
+  sadl_storageaccid1 = module.storageaccount.sa_id
+  sadl_properties1 = "aGVsbG8="
 }
 
 module "datafactory" {
@@ -64,7 +52,7 @@ module "keyvault" {
   kv_object_id = data.azurerm_client_config.current.object_id
   kv_sku_name = "standard"
   kv_secret_sa_name = "secretsa3"
-  kv_secret_sa_value = module.storageaccount1.sa_secret
+  kv_secret_sa_value = module.storageaccount.sa_secret
   kv_adfaccess = module.datafactory.df_principalid
 }
 

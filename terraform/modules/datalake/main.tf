@@ -1,9 +1,9 @@
 resource "azurerm_storage_data_lake_gen2_filesystem" "datalake" {
-  name               = sadl_name2
-  storage_account_id = sadl_storageaccid
+  name               = sadl_name1
+  storage_account_id = sadl_storageaccid1
 
     properties = {
-    hello = sadl_properties
+    hello = sadl_properties1
   }
 
 # Access Permission ACL for Container/Root Directory
