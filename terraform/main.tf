@@ -64,7 +64,7 @@ module "keyvault" {
   kv_object_id = data.azurerm_client_config.current.object_id
   kv_sku_name = "standard"
   kv_secret_sa_name = "secretsa2"
-  kv_secret_sa_value = module.storageaccount.secret
+  kv_secret_sa_value = module.storageaccount1.secret
   kv_adfaccess = module.datafactory.principalid
 }
 
