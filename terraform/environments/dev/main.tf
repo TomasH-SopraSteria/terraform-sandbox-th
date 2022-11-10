@@ -60,11 +60,9 @@ module "keyvault" {
 }
 
 module "datafactorylinkedservices" {
-  source = "../../modules/datafactory/datafactorylinkedservices"
+  source = "../../modules/datafactory/dflinkedkv"
   dfl_resource_group_name = "${var.rg_name}"
   dfl_datafactory_name = module.datafactory.df_name
   dfl_keyvaultid = module.keyvault.kv_id
   dfl_datafactoryid = module.datafactory.df_id
-  dfl_storage_acc_name = module.storageaccount.sa_name
-  dfl_storage_acc_secret = module.storageaccount.sa_secret
 }
