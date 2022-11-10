@@ -12,10 +12,6 @@ variable db_resource_group_name {
     description = "Resource group name"
 }
 
-variable db_location {
-    type = string
-}
-
 variable db_sku {
     type = string
 }
