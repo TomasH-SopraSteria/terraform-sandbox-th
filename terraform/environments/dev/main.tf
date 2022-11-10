@@ -65,4 +65,6 @@ module "datafactorylinkedservices" {
   dfl_datafactory_name = module.datafactory.df_name
   dfl_keyvaultid = module.keyvault.kv_id
   dfl_datafactoryid = module.datafactory.df_id
+  dfl_storage_acc_name = module.storageaccount.sa_name
+  dfl_storage_acc_secret = module.storageaccount.sa_secret
 }
