@@ -8,7 +8,7 @@ data "azurerm_client_config" "current" {}
 module "storageaccount" {
   source = "../../modules/storageaccount"
   #The field can contain only lowercase letters and numbers. Name must be between 3 and 24 characters.
-  sa_name = "sasandboxth5${var.location}"
+  sa_name = "sasandboxth5${var.environment}"
   sa_location = "${var.location}"
   sa_resource_group_name = "${var.rg_name}"
   sa_account_tier = "Standard"
@@ -19,14 +19,14 @@ module "storageaccount" {
 
 # module "datalake" {
 #   source = "./modules/storageaccount/sadatalake"
-#   dl_name = "datalake-sandbox-1${var.location}"
+#   dl_name = "datalake-sandbox-1${var.environment}"
 #   dl_storageaccid = module.storageaccount.sa_id
 #   dl_properties = "aGVsbG8="
 # }
 
 # module "datafactory" {
 #   source = "./modules/datafactory"
-#   df_name = "df-sandbox-tomash${var.location}"
+#   df_name = "df-sandbox-tomash${var.environment}"
 #   df_location = "${var.location}"
 #   df_resource_group_name = "${var.rg_name}"
 #   df_identity = "SystemAssigned"
@@ -34,7 +34,7 @@ module "storageaccount" {
 
 # module "databricks" {
 #   source = "./modules/databricks"
-#   db_name = "db-sandbox-tomas${var.location}"
+#   db_name = "db-sandbox-tomas${var.environment}"
 #   db_location = "${var.location}"
 #   db_resource_group_name = "${var.rg_name}"
 #   db_sku = "standard"
@@ -45,7 +45,7 @@ module "storageaccount" {
 
 # module "keyvault" {
 #   source = "./modules/keyvault"
-#   kv_name = "kv-sandbox-tomash3${var.location}"
+#   kv_name = "kv-sandbox-tomash3${var.environment}"
 #   kv_location = "${var.location}"
 #   kv_resource_group_name = "${var.rg_name}"
 #   kv_enabled_for_disk_encryption = true
