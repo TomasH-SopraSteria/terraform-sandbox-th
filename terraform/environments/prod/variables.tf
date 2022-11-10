@@ -1,6 +1,6 @@
 variable "rg_name" {
     type = string
-    default = "th_sandbox"
+    default = "th_sandbox_prod"
 }
 
 variable "location" {
@@ -10,5 +10,5 @@ variable "location" {
 
 variable "environment" {
     type = string
-    default = "production"
+    default = "prod"
 }
