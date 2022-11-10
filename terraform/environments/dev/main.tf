@@ -18,7 +18,7 @@ module "storageaccount" {
 }
 
 module "datalake" {
-  source = "./modules/storageaccount/sadatalake"
+  source = "../../modules/storageaccount/sadatalake"
   dl_name = "datalake-sandbox-1${var.environment}"
   dl_storageaccid = module.storageaccount.sa_id
   dl_properties = "aGVsbG8="
