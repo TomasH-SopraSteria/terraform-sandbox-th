@@ -7,8 +7,3 @@ output "kv_secret_sa" {
   description = "Name of secret to sa"
   value       = azurerm_key_vault_secret.secretsa.name
 }
-
-output "kv_secret_sa" {
-  description = "Value of secret to sa"
-  value       = azurerm_key_vault_secret.secretsa.value
-}
