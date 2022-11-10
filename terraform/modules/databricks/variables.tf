@@ -23,3 +23,12 @@ variable db_sku {
 variable db_tag_environment {
     type = string
 }
+
+variable db_connector_name {
+    type = string
+    description = "DF access name"
+}
+
+variable db_identity {
+    type = string
+}
