@@ -11,3 +11,8 @@ variable df_resource_group_name {
     type = string
     description = "Resource group name"
 }
+
+variable df_identity {
+    type = string
+    default = "SystemAssigned"
+}
