@@ -30,7 +30,7 @@ jobs:
 
   terraform_validate:
     name: 'Terraform Validate'
-    environment: development
+    environment: production
     runs-on: ubuntu-latest
     
     steps:
@@ -57,7 +57,7 @@ jobs:
 
   terraform_plan:
     name: 'Terraform Plan'
-    environment: development
+    environment: production
     needs: [terraform_validate]
     runs-on: ubuntu-latest
 
@@ -89,7 +89,7 @@ jobs:
 
   terraform_apply:
     name: 'Terraform Apply'
-    environment: development
+    environment: production
     needs: [terraform_plan]
     runs-on: ubuntu-latest
 
