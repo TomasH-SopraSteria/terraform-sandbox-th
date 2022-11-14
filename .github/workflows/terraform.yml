@@ -21,7 +21,7 @@ env:
   RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
   STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
   CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
-  ROOT_PATH: "../terraform"
+  ROOT_PATH: ${{ secrets.ROOT_PATH }}
   STAGE_NAME: development
 
 ###
@@ -48,14 +48,15 @@ jobs:
           -backend-config="container_name=${{env.CONTAINER_NAME}}" 
           -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
           -backend-config="key=terraform.tfstate"
-        working-directory: "./terraform"
+        working-directory: "${{env.ROOT_PATH}}"
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        working-directory: "./terraform"
+        working-directory: "${{env.ROOT_PATH}}"
 
   terraform_plan:
+    environment: development
     name: 'Terraform Plan'
     needs: [terraform_validate]
     runs-on: ubuntu-latest
@@ -79,14 +80,15 @@ jobs:
           -backend-config="container_name=${{env.CONTAINER_NAME}}" 
           -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
           -backend-config="key=terraform.tfstate"
-        working-directory: ${{env.ROOT_PATH}}
+        working-directory: "${{env.ROOT_PATH}}"
 
       - name: Terraform Plan
         run: terraform plan -lock=false
-        working-directory: ${{env.ROOT_PATH}}
+        working-directory: "${{env.ROOT_PATH}}"
         
 
   terraform_apply:
+    environment: development
     name: 'Terraform Apply'
     needs: [terraform_plan]
     runs-on: ubuntu-latest
@@ -111,8 +113,9 @@ jobs:
           -backend-config="container_name=${{env.CONTAINER_NAME}}" 
           -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
           -backend-config="key=terraform.tfstate"
+        working-directory: "${{env.ROOT_PATH}}"
       
       - name: Terraform Apply
         # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -lock=false
-        working-directory: ${{env.ROOT_PATH}}
+        working-directory: "${{env.ROOT_PATH}}"
