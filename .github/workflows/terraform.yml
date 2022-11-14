@@ -9,7 +9,6 @@ on:
       - main
   workflow_dispatch: 
 
-
 defaults:
   run:
     shell: bash
@@ -20,7 +19,7 @@ env:
   ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
   ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
   STAGE_NAME: development
-  ROOT_PATH: 'terraform/environments/dev'
+  ROOT_PATH: ${{ secrets.ROOT_PATH }}
 
 ###
 
@@ -40,8 +39,19 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
     
       - name: Terraform Init
-        run: terraform init
-        working-directory: ${{env.ROOT_PATH}}
+          env:
+            ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+            ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+            ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+            RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+            STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+            CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+          run: terraform init 
+            -backend-config="storage_account_name=$STORAGE_ACCOUNT" 
+            -backend-config="container_name=$CONTAINER_NAME" 
+            -backend-config="resource_group_name=$RESOURCE_GROUP"
+          working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Validate
         id: validate
@@ -67,12 +77,23 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
-        run: terraform init
-        working-directory: ${{env.ROOT_PATH}}
+          env:
+            ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+            ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+            ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+            RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+            STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+            CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+          run: terraform init 
+            -backend-config="storage_account_name=$STORAGE_ACCOUNT" 
+            -backend-config="container_name=$CONTAINER_NAME" 
+            -backend-config="resource_group_name=$RESOURCE_GROUP"
 
       - name: Terraform Plan
         run: terraform plan -lock=false
         working-directory: ${{env.ROOT_PATH}}
+        
 
   terraform_apply:
     name: 'Terraform Apply'
@@ -94,9 +115,19 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
-        run: terraform init
-        working-directory: ${{env.ROOT_PATH}}
-
+          env:
+            ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+            ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+            ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+            RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+            STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+            CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+          run: terraform init 
+            -backend-config="storage_account_name=$STORAGE_ACCOUNT" 
+            -backend-config="container_name=$CONTAINER_NAME" 
+            -backend-config="resource_group_name=$RESOURCE_GROUP"
+      
       - name: Terraform Apply
         run: terraform apply -auto-approve -lock=false
         working-directory: ${{env.ROOT_PATH}}
