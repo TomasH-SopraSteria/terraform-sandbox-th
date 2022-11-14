@@ -21,7 +21,7 @@ env:
   RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
   STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
   CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
-  ROOT_PATH: "./terraform"
+  ROOT_PATH: "../terraform"
   STAGE_NAME: development
 
 ###
