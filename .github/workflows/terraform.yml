@@ -29,8 +29,8 @@ env:
 jobs:
 
   terraform_validate:
-    environment: development
     name: 'Terraform Validate'
+    environment: development
     runs-on: ubuntu-latest
     
     steps:
@@ -56,8 +56,8 @@ jobs:
         working-directory: "${{env.ROOT_PATH}}"
 
   terraform_plan:
-    environment: development
     name: 'Terraform Plan'
+    environment: development
     needs: [terraform_validate]
     runs-on: ubuntu-latest
 
@@ -88,11 +88,10 @@ jobs:
         
 
   terraform_apply:
-    environment: development
     name: 'Terraform Apply'
+    environment: development
     needs: [terraform_plan]
     runs-on: ubuntu-latest
-    environment: development
 
     defaults:
       run:
