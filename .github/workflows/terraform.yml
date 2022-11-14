@@ -47,12 +47,12 @@ jobs:
           -backend-config="container_name=${{env.CONTAINER_NAME}}" 
           -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
           -backend-config="key=terraform.tfstate"
-        working-directory: ${{env.ROOT_PATH}}
+        working-directory: "./terraform"
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        working-directory: ${{env.ROOT_PATH}}
+        working-directory: "./terraform"
 
   terraform_plan:
     name: 'Terraform Plan'
