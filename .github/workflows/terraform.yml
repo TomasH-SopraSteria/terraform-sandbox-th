@@ -47,7 +47,7 @@ jobs:
           -backend-config="container_name=$CONTAINER_NAME" 
           -backend-config="resource_group_name=$RESOURCE_GROUP"
           -backend-config="key=terraform.tfstate"
-          working-directory: ${{env.ROOT_PATH}}
+        working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Validate
         id: validate
