@@ -112,6 +112,6 @@ jobs:
           -backend-config="key=terraform.tfstate"
       
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -lock=false
         working-directory: ${{env.ROOT_PATH}}
