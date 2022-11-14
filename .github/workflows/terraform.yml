@@ -29,6 +29,7 @@ env:
 jobs:
 
   terraform_validate:
+    environment: development
     name: 'Terraform Validate'
     runs-on: ubuntu-latest
     
