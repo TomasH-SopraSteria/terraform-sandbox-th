@@ -1,14 +1,13 @@
 
-name: 'terraform deployment to azure sandbox'
+name: 'Terraform deployment to azure sandbox'
 
 on:
-  # push:
-    # branches: [ "main" ]
-  pull_request:
-    branches:
-      - main
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   branches:
+  #     - main
   workflow_dispatch: 
-
 
 defaults:
   run:
@@ -19,8 +18,11 @@ env:
   ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
   ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
   ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
+  RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+  STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+  CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+  ROOT_PATH: ${{ secrets.ROOT_PATH }}
   STAGE_NAME: development
-  ROOT_PATH: 'terraform/environments/dev'
 
 ###
 
@@ -40,7 +42,11 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
     
       - name: Terraform Init
-        run: terraform init
+        run: terraform init 
+          -backend-config="storage_account_name=${{env.STORAGE_ACCOUNT}}" 
+          -backend-config="container_name=${{env.CONTAINER_NAME}}" 
+          -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
+          -backend-config="key=terraform.tfstate"
         working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Validate
@@ -67,12 +73,17 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init 
+          -backend-config="storage_account_name=${{env.STORAGE_ACCOUNT}}" 
+          -backend-config="container_name=${{env.CONTAINER_NAME}}" 
+          -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
+          -backend-config="key=terraform.tfstate"
         working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Plan
         run: terraform plan -lock=false
         working-directory: ${{env.ROOT_PATH}}
+        
 
   terraform_apply:
     name: 'Terraform Apply'
@@ -94,9 +105,13 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
-        run: terraform init
-        working-directory: ${{env.ROOT_PATH}}
-
+        run: terraform init 
+          -backend-config="storage_account_name=${{env.STORAGE_ACCOUNT}}" 
+          -backend-config="container_name=${{env.CONTAINER_NAME}}" 
+          -backend-config="resource_group_name=${{env.RESOURCE_GROUP}}"
+          -backend-config="key=terraform.tfstate"
+      
       - name: Terraform Apply
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -lock=false
         working-directory: ${{env.ROOT_PATH}}
