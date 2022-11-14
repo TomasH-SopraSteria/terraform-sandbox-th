@@ -1,5 +1,5 @@
 
-name: 'Terraform deployment to azure sandbox'
+name: 'Terraform Deployment to azure sandbox'
 
 on:
   push:
