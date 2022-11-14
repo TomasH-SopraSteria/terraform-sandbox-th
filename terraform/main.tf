@@ -32,16 +32,16 @@ module "datafactory" {
   df_identity = "SystemAssigned"
 }
 
-# module "databricks" {
-#   source = "./modules/databricks"
-#   db_name = "db-sandbox-tomas${var.environment}"
-#   db_location = "${var.location}"
-#   db_resource_group_name = "${var.rg_name}"
-#   db_sku = "standard"
-#   db_tag_environment = "${var.environment}"
-#   db_connector_name = "connector1"
-#   db_identity = "SystemAssigned"
-# }
+module "databricks" {
+  source = "./modules/databricks"
+  db_name = "db-sandbox-tomas${var.environment}"
+  db_location = "${var.location}"
+  db_resource_group_name = "${var.rg_name}"
+  db_sku = "standard"
+  db_tag_environment = "${var.environment}"
+  db_connector_name = "connector1"
+  db_identity = "SystemAssigned"
+}
 
 module "keyvault" {
   source = "./modules/keyvault"
